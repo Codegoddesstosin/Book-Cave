@@ -1,0 +1,57 @@
+swagger: "2.0"
+info:
+  description: "This is a sample API documentation by Codegoddesstosin for Books Cave"
+  version: "1.0.0"
+  title: "Books Cave"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "77tosin@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: localhost:8000
+basePath: "/v2"
+tags:
+- name: "Books"
+  description: "Everything about Books"
+  externalDocs:
+    description: "Find out more"
+    url: "http://swagger.io"
+- name: "Reviews"
+  description: "Access to Petstore orders"
+- name: "User"
+  description: "Operations about user"
+  externalDocs:
+    description: "Find out more about our store"
+    url: "http://swagger.io"
+schemes:
+- "http"
+paths:
+  /book:
+    post:
+      tags:
+      - "Book"
+      summary: "Create New Book"
+      description: ""
+      operationId: "addBook"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Book object that needs to be added to the Books Collection"
+        required: true
+        schema:
+          $ref: "#/definitions/Pet"
+      responses:
+        405:
+          description: "Invalid input"
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"
+ 

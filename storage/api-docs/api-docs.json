@@ -1,0 +1,215 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "L5 Swagger API",
+        "description": "L5 Swagger API description",
+        "contact": {
+            "email": "darius@matulionis.lt"
+        },
+        "version": "1.0.0"
+    },
+    "host": "API_HOST",
+    "basePath": "/api/v1",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/book": {
+            "get": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "List Books",
+                "operationId": "listBooks",
+                "parameters": [
+                    {
+                        "name": "Book",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/Book"
+                        }
+                    },
+                    "default": {
+                        "description": "error"
+                    }
+                }
+            }
+        },
+        "/users": {
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Create new user entry",
+                "operationId": "createUser",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "default": {
+                        "description": "error"
+                    }
+                }
+            }
+        },
+        "/book/{id}": {
+            "get": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Fetch Book details",
+                "operationId": "getBooks",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "UUID",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/Book"
+                        }
+                    },
+                    "default": {
+                        "description": "error"
+                    }
+                }
+            }
+        },
+        "/review": {
+            "get": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Get list of reviews",
+                "description": "Returns list of reviews",
+                "operationId": "getReviews",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Review"
+                ],
+                "summary": "Create new Bookreview entry",
+                "operationId": "createBookreview",
+                "parameters": [
+                    {
+                        "name": "review",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Review"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "properties": {
+                                "data": {
+                                    "$ref": "#definitions/BaseFields"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Book": {
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "publisher": {
+                    "type": "string"
+                }
+            },
+            "xml": {
+                "name": "Book"
+            }
+        },
+        "BooksController": {
+            "xml": {
+                "name": "Book"
+            }
+        },
+        "Review": {
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "rating": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "xml": {
+                "name": "Review"
+            }
+        },
+        "User": {
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                }
+            },
+            "xml": {
+                "name": "Review"
+            }
+        }
+    }
+}
